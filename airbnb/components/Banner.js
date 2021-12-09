@@ -1,12 +1,5 @@
 import Image from "next/image";
-import {
-  GlobalIcon,
-  MenuIcon,
-  UserCircleIcon,
-  UserIcon,
-  SearchIcon,
-  GlobeAltIcon,
-} from "@heroicons/react/solid";
+
 
 function Banner() {
   return (
