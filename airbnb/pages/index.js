@@ -20,13 +20,13 @@ export default function Home({ exploreData, cardsData }) {
           <h2 className="text-4xl font-bold pb-5">
             Explorez nos distations ...
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {exploreData?.map((item) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-3 -ml-3">
+            {exploreData?.map(({ img, distance, location }) => (
               <CardHome
-                key={item.img}
-                img={item.img}
-                distance={item.distance}
-                location={item.location}
+                key={img}
+                img={img}
+                distance={distance}
+                location={location}
               />
             ))}
           </div>
@@ -36,9 +36,11 @@ export default function Home({ exploreData, cardsData }) {
             Voyager ou vous le souhaitez
           </h2>
 
-          {cardsData.map((item) => (
-            <MediumCard key={item.img} img={item.img} title={item.title} />
-          ))}
+          <div className="flex space-x-3 overflow-scroll scrollbar-hide">
+            {cardsData?.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+          </div>
         </section>
       </main>
     </div>
