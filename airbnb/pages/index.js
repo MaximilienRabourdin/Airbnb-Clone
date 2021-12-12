@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Banner from "../components/Banner";
 import CardHome from "../components/CardHome";
 import MediumCard from "../components/MediumCard";
+import LargeCard from "../components/LargeCard";
 
 export default function Home({ exploreData, cardsData }) {
   return (
@@ -42,6 +43,12 @@ export default function Home({ exploreData, cardsData }) {
             ))}
           </div>
         </section>
+
+              <LargeCard 
+              img='https://images.pexels.com/photos/1053687/pexels-photo-1053687.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'
+              title="Venez découvrir les nouveaux ateliers du mois de décembre"
+              />
+
       </main>
     </div>
   );
