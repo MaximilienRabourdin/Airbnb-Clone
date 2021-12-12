@@ -44,11 +44,12 @@ export default function Home({ exploreData, cardsData }) {
           </div>
         </section>
 
-              <LargeCard 
-              img='https://images.pexels.com/photos/1053687/pexels-photo-1053687.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'
-              title="Venez découvrir les nouveaux ateliers du mois de décembre"
-              />
-
+        <LargeCard
+           img="https://images.pexels.com/photos/1053687/pexels-photo-1053687.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+          title="Venez découvrir les nouveaux ateliers du mois de décembre"
+          description="les ateliers sur AirBnb"
+          buttonText="Je veux dessiner"
+        />
       </main>
     </div>
   );
