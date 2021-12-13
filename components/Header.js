@@ -4,6 +4,7 @@ import {
   UserCircleIcon,
   SearchIcon,
   GlobeAltIcon,
+  UsersIcon,
 } from "@heroicons/react/solid";
 import { useState } from "react";
 import { DateRangePicker } from 'react-date-range';
@@ -79,13 +80,21 @@ function Header() {
 
       {/* Si searchInput est utilisé alors affiche la balise h1 */}
       {searchInput && (
-        <div>
+        <div className="flex flex-col col-span-3 mx-auto mt-8">
           <DateRangePicker
           ranges={[selectionRange]}
           minDate={new Date()}
           rangeColors={["#FD5B61"]}
           onChange={handleSelect}
             />
+
+        <div className="flex items-center border-b mb-4">
+          <h2 className="text-2xl flex-grow font-semibold"> 
+            Nombre de personnes
+          </h2>
+
+          <UsersIcon className="h-5"/>
+        </div>
         </div>
       )}
     </header>
