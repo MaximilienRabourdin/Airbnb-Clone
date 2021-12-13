@@ -8,7 +8,13 @@ import {
   GlobeAltIcon,
 } from "@heroicons/react/solid";
 
+import { useState } from "react";
+import Calendar from "react-date-range/dist/components/Calendar";
+
 function Header() {
+  //on cherche à recupérer l'info dans le input de la recherche donc add value + onChange
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <header
       className="
@@ -29,6 +35,8 @@ function Header() {
       {/* Middle section header */}
       <div className="flex items-center md:border-2 rounded-full md:shadow-sm py-2 ">
         <input
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
           className="flex-grow text-sm pl-5 placeholder-gray-400 outline-none
                  bg-transparent text-gray-600"
           type="text"
@@ -52,6 +60,13 @@ function Header() {
           <UserCircleIcon className="h-6" />
         </div>
       </div>
+
+      {/* Si searchInput est utilisé alors affiche la balise h1 */}
+      {searchInput && (
+        <div>
+          <Calendar />
+        </div>
+      )}
     </header>
   );
 }

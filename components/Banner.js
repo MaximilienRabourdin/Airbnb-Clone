@@ -4,7 +4,7 @@ import Image from "next/image";
 function Banner() {
   return (
     //Mobile first = banner responsive
-    <div className="relative h-[300px] sm:h_[500px] xl:h-[600px] 2xl:h-[700px]">
+    <div className="opacity-75 relative h-[300px] sm:h_[500px] xl:h-[600px] 2xl:h-[700px]">
       <Image
         src="https://images.pexels.com/photos/1708601/pexels-photo-1708601.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
         layout="fill"
