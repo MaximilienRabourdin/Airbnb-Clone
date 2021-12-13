@@ -1,19 +1,35 @@
 import Image from "next/image";
 import {
-  GlobalIcon,
   MenuIcon,
   UserCircleIcon,
-  UserIcon,
   SearchIcon,
   GlobeAltIcon,
 } from "@heroicons/react/solid";
-
 import { useState } from "react";
-import Calendar from "react-date-range/dist/components/Calendar";
+import { DateRangePicker } from 'react-date-range';
+
+//Styled Calendar
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
 
 function Header() {
   //on cherche à recupérer l'info dans le input de la recherche donc add value + onChange
   const [searchInput, setSearchInput] = useState("");
+  const [startDate, setStartDate] = useState( new Date ());
+  const [endDate, setEndDate] = useState( new Date ());
+
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: 'selection',
+  }
+
+  // ranges.selection.startDate vient de la librairie "react-date-range"
+  const handleSelect = (ranges)  => {
+      setStartDate(ranges.selection.startDate)
+      setEndDate(ranges.selection.endDate)
+  }
 
   return (
     <header
@@ -64,7 +80,12 @@ function Header() {
       {/* Si searchInput est utilisé alors affiche la balise h1 */}
       {searchInput && (
         <div>
-          <Calendar />
+          <DateRangePicker
+          ranges={[selectionRange]}
+          minDate={new Date()}
+          rangeColors={["#FD5B61"]}
+          onChange={handleSelect}
+            />
         </div>
       )}
     </header>
