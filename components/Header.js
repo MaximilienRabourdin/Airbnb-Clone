@@ -7,7 +7,7 @@ import {
   UsersIcon,
 } from "@heroicons/react/solid";
 import { useState } from "react";
-import { DateRangePicker } from 'react-date-range';
+import { DateRangePicker } from "react-date-range";
 
 //Styled Calendar
 import "react-date-range/dist/styles.css"; // main style file
@@ -16,21 +16,27 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 function Header() {
   //on cherche à recupérer l'info dans le input de la recherche donc add value + onChange
   const [searchInput, setSearchInput] = useState("");
-  const [startDate, setStartDate] = useState( new Date ());
-  const [endDate, setEndDate] = useState( new Date ());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [noOfGuests, setNoOfGuests] = useState(1);
 
-
+  //permet d'avoir la tranche des dates selectionnées
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
-    key: 'selection',
-  }
+    key: "selection",
+  };
 
   // ranges.selection.startDate vient de la librairie "react-date-range"
-  const handleSelect = (ranges)  => {
-      setStartDate(ranges.selection.startDate)
-      setEndDate(ranges.selection.endDate)
-  }
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  };
+
+  // permet de renitialiser la recherche en indiquant que setSearchInput devient vide
+  const resetInput = () => {
+    setSearchInput("");
+  };
 
   return (
     <header
@@ -82,19 +88,30 @@ function Header() {
       {searchInput && (
         <div className="flex flex-col col-span-3 mx-auto mt-8">
           <DateRangePicker
-          ranges={[selectionRange]}
-          minDate={new Date()}
-          rangeColors={["#FD5B61"]}
-          onChange={handleSelect}
+            ranges={[selectionRange]}
+            minDate={new Date()}
+            rangeColors={["#FD5B61"]}
+            onChange={handleSelect}
+          />
+
+          <div className="flex items-center border-b mb-4">
+            <h2 className="text-2xl flex-grow font-semibold">
+              Nombre de personnes
+            </h2>
+
+            <UsersIcon className="h-5" />
+            <input
+              type="number"
+              value={noOfGuests}
+              onChange={(e) => setNoOfGuests(e.target.value)}
+              min={1}
+              className="w-12 pl-2 text-lg outline-none text-red-400"
             />
-
-        <div className="flex items-center border-b mb-4">
-          <h2 className="text-2xl flex-grow font-semibold"> 
-            Nombre de personnes
-          </h2>
-
-          <UsersIcon className="h-5"/>
-        </div>
+          </div>
+          <div className="flex justify-between">
+            <button className="flex-grow text-gray-500" onClick={resetInput}> Annuler </button>
+            <button className="flex-grow text-red-400"> Valider</button>
+          </div>
         </div>
       )}
     </header>
