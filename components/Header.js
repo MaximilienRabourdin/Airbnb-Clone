@@ -12,6 +12,7 @@ import { DateRangePicker } from "react-date-range";
 //Styled Calendar
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import { useRouter } from "next/router";
 
 function Header() {
   //on cherche à recupérer l'info dans le input de la recherche donc add value + onChange
@@ -19,6 +20,7 @@ function Header() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noOfGuests, setNoOfGuests] = useState(1);
+  const router = useRouter();
 
   //permet d'avoir la tranche des dates selectionnées
   const selectionRange = {
@@ -38,6 +40,19 @@ function Header() {
     setSearchInput("");
   };
 
+  //query = recupere 
+  const search = () => {
+    router.push({
+      pathname:"/search",
+      query: {
+        location: searchInput, 
+        startDate: startDate.toISOString,
+        endDate: endDate.toISOString,
+        noOfGuests,
+      },
+      });
+  };
+
   return (
     <header
       className="
@@ -46,7 +61,7 @@ function Header() {
          py-5 px-5 md:px-10"
     >
       {/* Left section header */}
-      <div className="relative flex items-center h-10 cursor-pointer my-auto">
+      <div onClick={() => router.push("/")} className="relative flex items-center h-10 cursor-pointer my-auto">
         <Image
           src="https://links.papareact.com/qd3"
           layout="fill"
@@ -110,7 +125,7 @@ function Header() {
           </div>
           <div className="flex justify-between">
             <button className="flex-grow text-gray-500" onClick={resetInput}> Annuler </button>
-            <button className="flex-grow text-red-400"> Rechercher</button>
+            <button className="flex-grow text-red-400" onClick={search}> Rechercher</button>
           </div>
         </div>
       )}
