@@ -110,7 +110,7 @@ function Header() {
           </div>
           <div className="flex justify-between">
             <button className="flex-grow text-gray-500" onClick={resetInput}> Annuler </button>
-            <button className="flex-grow text-red-400"> Valider</button>
+            <button className="flex-grow text-red-400"> Rechercher</button>
           </div>
         </div>
       )}
